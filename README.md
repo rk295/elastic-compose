@@ -9,7 +9,7 @@ This is a quick [DockerCompose] file which brings up a ELK stack. Currently this
 
 ## Instructions
 
-When started Kibana will be listening on port 5601 on localhost (http://localhost:5601). Elastic is on port 9200 (http://localhost:9200/).
+When started Kibana will be listening on port 5601 on localhost (http://localhost:5601). Elastic is on port 9200 (http://localhost:9200/). Logstash will be started with a simple configuration, listening for connection via TCP port 5000 on localhost.
 
 If you wish to provide extra configuration files to logstash, put them in the `conf.d/` directory, making sure they end in `.conf`.
 
@@ -42,5 +42,28 @@ Run from the same directoy as the `docker-compose.yml` file.
 
     docker-compose kill
 
+### Configuring
+
+If you wish to add additional configuration to logstash add it to the `conf.d` directory. The files must end in `.conf`. Out of the box this contains two files:
+
+* `elastic-output.conf` - Sends all output to the ElasticSearch container.
+* `tcp-5000.conf` - Accepts logs on `TCP:5000`
+
+## Data
+
+Elastic Search is configured to store its data in the `elastic-data` in the current directory. This will enable saving of state between runs of these containers. If you wish to clear out all data and start a fresh copy of Elastic Search simply remove that directory:
+
+    rm -rf elastic-data
+
+## More reading
+
+The containers are all built from the official Docker Hub images. Lots more info can be found on each page:
+
+* [ElasticSearch]
+* [Kibana]
+* [Logstash]
 
 [DockerCompose]: (https://docs.docker.com/compose/)
+[ElasticSearch]: (https://hub.docker.com/_/elasticsearch/)
+[Kibana]: (https://hub.docker.com/_/kibana/)
+[Logstash]: (https://hub.docker.com/_/logstash/)
