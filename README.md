@@ -6,14 +6,15 @@ This is a quick [DockerCompose] file which brings up a ELK stack. Currently this
 * elasticsearch
 * kibana
 * logstash
+* grafana
 
 ## Instructions
 
-When started Kibana will be listening on port 5601 on localhost (http://localhost:5601). Elastic is on port 9200 (http://localhost:9200/). Logstash will be started with a simple configuration, listening for connection via TCP port 5000 on localhost.
+When started Kibana will be listening on port 5601 on localhost (http://localhost:5601/). Elastic is on port 9200 (http://localhost:9200/) and Grafana is on port 3000 (http://localhost:3000/) Logstash will be started with a simple configuration, listening for connection via TCP port 5000 on localhost.
 
 If you wish to provide extra configuration files to logstash, put them in the `conf.d/` directory, making sure they end in `.conf`.
 
-### Starting
+## Starting
 
 To bring the stack, make sure you are in the same directory as the `docker-compose.yml` file and run:
 
@@ -33,8 +34,7 @@ That will tail the last few hundred lines from each container, add `-f` to follo
 
     docker-compose logs -f elasticsearch
 
-
-### Stopping
+## Stopping
 
 **Note:** If you ran `docker-compose up` then you will need to switch to another window first.
 
@@ -42,7 +42,15 @@ Run from the same directoy as the `docker-compose.yml` file.
 
     docker-compose kill
 
-### Configuring
+## Grafana Setup
+
+The first time you run it, you need to add a datasource to Grafana. The `grafana-setup` script in this directory will do that for you, simply run:
+
+    ./grafana-setup
+
+Once the services have started.
+
+## Configuring
 
 If you wish to add additional configuration to logstash add it to the `conf.d` directory. The files must end in `.conf`. Out of the box this contains two files:
 
