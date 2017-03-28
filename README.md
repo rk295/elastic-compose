@@ -45,6 +45,14 @@ Of if you want to insert JSON, use port 5000
     { "foo": "bar", "other_thing": "this"}
     EOF
 
+If you don't have netcat installed, and you don't want to, you can use the bash builtin `/dev/tcp`
+
+    cat <<EOF > /dev/tcp/localhost/5000
+    { "foo": "bar", "other_thing": "this"}
+    EOF
+
+YMMV!
+
 ## More detailed start/stop Instructions
 
 ### Starting
