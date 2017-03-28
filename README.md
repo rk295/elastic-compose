@@ -7,13 +7,17 @@ This is a quick [DockerCompose] file which brings up a ELK stack. Currently this
 * [Kibana]
 * [Logstash]
 
+## Prerequisites
+
+The only prerequisite is to have [Docker] installed and running on your machine. If you wish to fire logs into [Logstash] using the examples below you also need the NetCat utility. The package is often just called `nc` in Linux distributions.
+
 ## Quick Start
 
-To quickly get going simply run:
+To quickly get going simply run the following from the root of this repo:
 
     docker-compose up
 
-From the root of this repo, then open a browser and type in [http://localhost:5601/](http://localhost:5601/), Kibana will load and you should be good to go.
+Then open a browser and type in [http://localhost:5601/](http://localhost:5601/), Kibana will load and you should be good to go.
 
 If you want to push logs into ELK, read through the 'Initial Configuration' section below.
 
@@ -74,6 +78,7 @@ Run from the same directoy as the `docker-compose.yml` file.
     docker-compose kill
 
 
+[Docker]: (https://docker.com/)
 [DockerCompose]: (https://docs.docker.com/compose/)
 [netcat]: (http://nc110.sourceforge.net/)
 [ElasticSearch]: (https://www.elastic.co/products/elasticsearch)
